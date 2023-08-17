@@ -16,7 +16,7 @@ function App() {
         </Row>
       </Container>
       <Container>
-        <Row c>
+        <Row>
           <Col sm>
             <Formulario />
           </Col>

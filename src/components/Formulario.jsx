@@ -1,16 +1,14 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Button, Card, Col, Container, Form, FormControl, Row } from 'react-bootstrap'
+import { useForm } from '../hooks'
 
 export const Formulario = () => {
-  const [nombreMascota, setNombreMascota] = useState("");
-  const [nombrePropietario, setNombrePropietario] = useState("");
-  const [email, setEmail] = useState("");
-  const [date, setDate] = useState("");
-  const [sintomas, setSintomas] = useState("");
+  const { serialize } = useForm();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log({ nombreMascota, nombrePropietario, email, date })
+    const formData = serialize(e.target);
+    console.log(formData)
   }
   return (
     <>
@@ -25,31 +23,31 @@ export const Formulario = () => {
               <Row className='my-2'>
                 <Col sm>
                   <label>Nombre mascota</label>
-                  <FormControl className='' type="text" size="sm" name="mascota" value={nombreMascota} placeholder='Nombre de la mascota' onChange={e => setNombreMascota(e.target.value)} />
+                  <FormControl type="text" size="sm" name="mascota" placeholder='Nombre de la mascota' />
                 </Col>
               </Row>
               <Row className='my-2'>
                 <Col sm>
                   <label>Nombre propietario</label>
-                  <FormControl className='' type="text" size="sm" name="duenio" value={nombrePropietario} placeholder='Nombre del propietario' onChange={e => setNombrePropietario(e.target.value)} />
+                  <FormControl  type="text" size="sm" name="dueno" placeholder='Nombre del propietario' />
                 </Col>
               </Row>
               <Row className='my-2'>
                 <Col sm>
                   <label>Email</label>
-                  <FormControl className='' type="email" size="sm" name="email" value={email} placeholder='Email de Contacto' onChange={e => setEmail(e.target.value)} />
+                  <FormControl  type="email" size="sm" name="email" placeholder='Email de Contacto' />
                 </Col>
               </Row>
               <Row className='my-2'>
                 <Col sm>
                   <label>Alta</label>
-                  <FormControl className='' type="date" size="sm" name="alta" value={date} onChange={e => setDate(e.target.value)} />
+                  <FormControl  type="date" size="sm" name="alta" />
                 </Col>
               </Row>
               <Row className='my-2'>
                 <Col sm>
                   <label>Sintomas</label>
-                  <FormControl as={"textarea"} className='' type="text" size="sm" name="sintomas" value={sintomas} placeholder='Describa los sintomas' onChange={e => setSintomas(e.target.value)} />
+                  <FormControl as={"textarea"} type="text" size="sm" name="sintomas" placeholder='Describa los sintomas' />
                 </Col>
               </Row>
               <Button type="submit" size="sm" className='w-100 my-2'>
